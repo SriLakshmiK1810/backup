@@ -109,18 +109,12 @@ const remaining = budget - totalSpent;
     </div>
   </div>
 </div>
-<div
-  style={{
-    display: "flex",
-    gap: "15px",
-    marginBottom: "20px",
-  }}
->
+<div style={filterContainer}>
   <select
-    value={filterCategory}
-    onChange={(e) => setFilterCategory(e.target.value)}
-    
-  >
+  value={filterCategory}
+  onChange={(e) => setFilterCategory(e.target.value)}
+  style={selectStyle}
+>
     <option value="All">All Categories</option>
     <option value="Food">Food</option>
     <option value="Shopping">Shopping</option>
@@ -133,13 +127,7 @@ const remaining = budget - totalSpent;
   <select
   value={sortBy}
   onChange={(e) => setSortBy(e.target.value)}
-//   style={{
-//   padding: "10px 14px",
-//   border: "1px solid #D1D5DB",
-//   borderRadius: "8px",
-//   backgroundColor: "#fff",
-//   fontSize: "14px",
-// }}
+  style={selectStyle}
 >
   <option value="Newest">Newest Date</option>
   <option value="Oldest">Oldest Date</option>
