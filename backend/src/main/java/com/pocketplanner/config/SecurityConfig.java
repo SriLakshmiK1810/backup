@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
-import java.util.List;
+
 @Configuration
 public class SecurityConfig {
 
@@ -44,14 +44,14 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
     http
         .cors(Customizer.withDefaults())
         .csrf(csrf -> csrf.disable())
+        .httpBasic(httpBasic -> httpBasic.disable())
         .authorizeHttpRequests(auth -> auth
             .requestMatchers("/api/users/**").permitAll()
             .requestMatchers("/api/expenses/**").permitAll()
             .requestMatchers("/api/budgets/**").permitAll()
             .requestMatchers("/api/dashboard/**").permitAll()
             .anyRequest().authenticated()
-        )
-        .httpBasic(Customizer.withDefaults());
+        );
 
     return http.build();
 }
