@@ -24,6 +24,7 @@ function Sidebar() {
         <Link to="/budget" style={linkStyle}>Budget</Link>
         <Link to="/wishlist" style={linkStyle}>Wishlist</Link>
         <Link to="/profile" style={linkStyle}>Profile</Link>
+        <Link to="/settings" style={linkStyle}>Settings</Link>
       </nav>
 
       <button style={logoutStyle}>Logout</button>

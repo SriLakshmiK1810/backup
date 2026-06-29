@@ -12,6 +12,7 @@ import ScanBillScreen from "./screens/ScanBillScreen";
 import ChangePasswordScreen from "./screens/ChangePasswordScreen";
 import ChangeEmailScreen from "./screens/ChangeEmailScreen";
 import DeleteAccountScreen from "./screens/DeleteAccountScreen";
+import SettingsScreen from "./screens/SettingsScreen";
 function App() {
   return (
     <BrowserRouter>
@@ -28,10 +29,8 @@ function App() {
   <Route path="/scan-bill" element={<ScanBillScreen />} />
   <Route path="/change-password" element={<ChangePasswordScreen />}/>
 <Route path="/change-email" element={<ChangeEmailScreen />}/>
-<Route
-    path="/delete-account"
-    element={<DeleteAccountScreen />}
-/>
+<Route path="/delete-account" element={<DeleteAccountScreen />}/>
+<Route path="/settings" element={<SettingsScreen />}/>
 </Routes>
     </BrowserRouter>
   );

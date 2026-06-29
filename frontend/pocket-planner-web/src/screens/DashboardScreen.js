@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import api from "../services/api";
 import PieChartComponent from "../components/PieChartComponent";
-
+import { useTheme } from "../context/ThemeContext";
 function DashboardScreen() {
   const navigate = useNavigate();
+  const { darkMode } = useTheme();
   const [dashboard, setDashboard] = useState({
   totalBudget: 0,
   totalExpenses: 0,
@@ -36,12 +37,28 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
-      <main style={mainContent}>
+      <main
+  style={{
+    ...mainContent,
+    background: darkMode ? "#111827" : "#F8FAFC",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
         <header style={{ marginBottom: "30px" }}>
-          <h1 style={{ color: "#111827", margin: "0 0 5px" }}>
+          <h1
+  style={{
+    color: darkMode ? "#FFFFFF" : "#111827",
+    margin: "0 0 5px",
+  }}
+>
             Welcome Back 👋
-          </h1>
-          <p style={{ color: "#6B7280", margin: 0 }}>
+          </h1><p
+  style={{
+    color: darkMode ? "#D1D5DB" : "#6B7280",
+    margin: 0,
+  }}
+>
+          
             Track your expenses and manage your budget.
           </p>
         </header>
@@ -64,7 +81,13 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
 
    </div>
 
-        <section style={sectionCard}>
+        <section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
           <h2 style={sectionTitle}>Budget Usage</h2>
           <div style={progressTrack}>
             <div
@@ -92,17 +115,33 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
           <p style={{ margin: "10px 0 0", color: "#6B7280" }}>
            ₹{dashboard.totalExpenses} of ₹{dashboard.totalBudget} used      </p>
         </section>
-  <section style={sectionCard}>
+ <section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
   <h2 style={sectionTitle}>📅 Monthly Insights</h2>
 
   <div style={overviewGrid}>
     <div>
-      <p style={overviewLabel}>Expenses Logged</p>
+      <p
+  style={{
+    ...overviewLabel,
+    color: darkMode ? "#D1D5DB" : "#6B7280",
+  }}
+>Expenses Logged</p>
       <h3>{recentExpenses.length}</h3>
     </div>
 
     <div>
-      <p style={overviewLabel}>Average Expense</p>
+      <p
+  style={{
+    ...overviewLabel,
+    color: darkMode ? "#D1D5DB" : "#6B7280",
+  }}
+>Average Expense</p>
       <h3>
         ₹
         {recentExpenses.length > 0
@@ -114,7 +153,12 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     </div>
 
     <div>
-      <p style={overviewLabel}>Largest Expense</p>
+      <p
+  style={{
+    ...overviewLabel,
+    color: darkMode ? "#D1D5DB" : "#6B7280",
+  }}
+>Largest Expense</p>
       <h3>
         ₹
         {recentExpenses.length > 0
@@ -128,7 +172,13 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
 </section>
 
       
-       <section style={sectionCard}>
+      <section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
   <h2 style={sectionTitle}>Savings Goal</h2>
 
  <p>
@@ -152,21 +202,31 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
   </div>
 
   <p style={{ marginTop: "15px" }}>
-    Current Savings: <strong>₹{dashboard.remainingBalance}</strong>
+  Current Savings: <strong>₹{dashboard.remainingBalance}</strong>
+</p>
 
 <p style={{ marginTop: "10px" }}>
   {dashboard.remainingBalance >= (latestBudget?.savingsGoal || 0)
     ? "🎉 Congratulations! You reached your savings goal."
     : `₹${((latestBudget?.savingsGoal || 0) - dashboard.remainingBalance).toFixed(0)} more to reach your goal.`}
 </p>
-  </p>
 </section>
-<section style={sectionCard}>
+<section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
   <h2 style={sectionTitle}>⚡ Quick Actions</h2>
 
   <div style={quickGrid}>
     <button
-      style={quickCard}
+      style={{
+  ...quickCard,
+  background: darkMode ? "#374151" : "#EEF4FF",
+  color: darkMode ? "#FFFFFF" : "#111827",
+}}
       onClick={() => navigate("/add-expense")}
     >
       <h3>Manual Entry</h3>
@@ -174,7 +234,11 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     </button>
 
     <button
-      style={quickCard}
+      style={{
+  ...quickCard,
+  background: darkMode ? "#374151" : "#EEF4FF",
+  color: darkMode ? "#FFFFFF" : "#111827",
+}}
       onClick={() => navigate("/scan-bill")}
     >
       <h3>Scan Bill</h3>
@@ -183,7 +247,13 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
   </div>
 </section>
         <div style={detailsGrid}>
-          <section style={sectionCard}>
+          <section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
             <h2 style={sectionTitle}>Recent Expenses</h2>
             {recentExpenses.length === 0 ? (
               <p>No expenses added yet</p>
@@ -199,13 +269,25 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
           </section>
 
           <div style={{ display: "grid", gap: "20px" }}>
-            <section style={sectionCard}>
+           <section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
               <h2 style={sectionTitle}>Quick Stats</h2>
               <p>Food: 35%</p>
               <p>Travel: 25%</p>
               <p style={{ marginBottom: 0 }}>Shopping: 40%</p>
             </section>
-            <section style={sectionCard}>
+            <section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
               <h2 style={sectionTitle}>Recent Activity</h2>
               <p>🍔 Food Expense Added</p>
               <p>🚕 Travel Expense Added</p>
@@ -213,19 +295,36 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
             </section>
           </div>
         </div>
-        <section style={sectionCard}>
+        <section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
   <h2 style={sectionTitle}>📊 Expense Breakdown</h2>
 
   <PieChartComponent expenses={allExpenses} />
 </section>
-        <section style={sectionCard}>
+        <section
+  style={{
+    ...sectionCard,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
   <h2 style={sectionTitle}>💡 Tip of the Day</h2>
 
   <p style={{ color: "#4B5563", marginBottom: "10px" }}>
     "Track every rupee today to build a stronger financial future tomorrow."
   </p>
 
-  <p style={{ color: "#6B7280", margin: 0 }}>
+  <p
+  style={{
+    color: darkMode ? "#D1D5DB" : "#6B7280",
+    margin: 0,
+  }}
+>
     Small daily savings can make a big difference over time.
   </p>
 </section>
@@ -235,19 +334,47 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
 }
 
 function SummaryCard({ label, value }) {
+  const { darkMode } = useTheme();
+
   return (
-    <div style={summaryCard}>
-      <p style={cardLabel}>{label}</p>
-      <h2 style={cardValue}>{value}</h2>
+    <div
+      style={{
+        ...summaryCard,
+        background: darkMode ? "#1F2937" : "#FFFFFF",
+        color: darkMode ? "#FFFFFF" : "#111827",
+      }}
+    >
+     <p
+  style={{
+    ...cardLabel,
+    color: darkMode ? "#D1D5DB" : "#6B7280",
+  }}
+>
+  {label}
+</p>
+      <h2
+  style={{
+    ...cardValue,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  {value}
+</h2>
     </div>
   );
 }
 
 
-
 function ExpenseItem({ label, value }) {
+  const { darkMode } = useTheme();
+
   return (
-    <div style={expenseItem}>
+    <div
+      style={{
+        ...expenseItem,
+        color: darkMode ? "#FFFFFF" : "#374151",
+      }}
+    >
       <span>{label}</span>
       <strong>{value}</strong>
     </div>

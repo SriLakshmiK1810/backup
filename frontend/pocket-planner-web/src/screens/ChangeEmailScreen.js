@@ -46,12 +46,12 @@ function ChangeEmailScreen() {
 
       <div style={mainContent}>
         <div style={card}>
-          <h1>📧 Change Email</h1>
+          <h1>Change Email</h1>
 
           <label>New Email</label>
 
           <input
-            type="email"
+            type="email" placeholder="example@gmail.com"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
             style={inputStyle}
@@ -61,7 +61,7 @@ function ChangeEmailScreen() {
 
           <input
             type="password"
-            value={password}
+            value={password} placeholder="Atleast 6 characters"
             onChange={(e) => setPassword(e.target.value)}
             style={inputStyle}
           />
