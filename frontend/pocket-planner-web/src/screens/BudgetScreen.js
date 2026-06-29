@@ -8,12 +8,12 @@ function BudgetScreen() {
     period: "Monthly",
     startDate: "",
     endDate: "",
+    savingsGoal: ""   // Better to keep it inside budget
   });
   const calculateEndDate = (startDate, period) => {
   if (!startDate) return "";
 
   const date = new Date(startDate);
-
   switch (period) {
     case "Daily":
       return date.toISOString().split("T")[0];
@@ -44,16 +44,18 @@ function BudgetScreen() {
   period: budget.period,
   startDate: budget.startDate,
   endDate: budget.endDate,
+  savingsGoal: Number(budget.savingsGoal)
 });
 
     alert("Budget saved successfully!");
 
     setBudget({
-      amount: "",
-      period: "Monthly",
-      startDate: "",
-      endDate: "",
-    });
+    amount: "",
+    period: "Monthly",
+    startDate: "",
+    endDate: "",
+    savingsGoal: ""
+});
 
   } catch (err) {
   console.log(err.response?.status);
@@ -137,6 +139,24 @@ function BudgetScreen() {
     />
   </div>
 
+  <div style={inputGroup}>
+    <label style={label}>Monthly Savings Goal</label>
+    <input
+        type="number"
+        placeholder="e.g. 10000"
+        value={budget.savingsGoal}
+        onChange={(e) =>
+            setBudget({
+                ...budget,
+                savingsGoal: e.target.value,
+            })
+        }
+        style={input}
+    />
+    <small style={{ color: "#6B7280", marginTop: "5px" }}>
+        Your target amount to save this month.
+    </small>
+</div>
   <button type="submit" style={buttonStyle}>
     💾 Save Budget
   </button>
@@ -146,6 +166,8 @@ function BudgetScreen() {
       </main>
     </div>
   );
+
+
 }
 
 const mainContent = {

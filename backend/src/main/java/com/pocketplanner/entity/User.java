@@ -14,6 +14,7 @@ public class User {
     private String email;
     private String password;
     private String role = "USER";
+     private Double savingsGoal = 0.0;
 
     public User() {}
 
@@ -47,5 +48,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    // NEW GETTER
+    public Double getSavingsGoal() {
+        return savingsGoal;
+    }
+
+    // NEW SETTER
+    public void setSavingsGoal(Double savingsGoal) {
+        this.savingsGoal = savingsGoal;
     }
 }

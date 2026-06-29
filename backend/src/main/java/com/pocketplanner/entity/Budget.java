@@ -18,6 +18,7 @@ public class Budget {
     private LocalDate startDate;
 
     private LocalDate endDate;
+    private Double savingsGoal;
 
     public Budget() {}
 
@@ -56,4 +57,11 @@ public class Budget {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+    public Double getSavingsGoal() {
+    return savingsGoal;
+}
+
+public void setSavingsGoal(Double savingsGoal) {
+    this.savingsGoal = savingsGoal;
+}
 }
