@@ -1,10 +1,10 @@
 package com.pocketplanner.controller;
-
+import com.pocketplanner.dto.ChangePasswordRequest;
 import com.pocketplanner.entity.User;
 import com.pocketplanner.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.pocketplanner.dto.ChangePasswordRequest;
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin(origins = {
@@ -39,4 +39,15 @@ public class UserController {
                            @RequestBody User updatedUser) {
         return userService.updateUser(id, updatedUser);
     }
+    @PutMapping("/{id}/change-password")
+public User changePassword(
+        @PathVariable Long id,
+        @RequestBody ChangePasswordRequest request) {
+
+    return userService.changePassword(
+            id,
+            request.getOldPassword(),
+            request.getNewPassword()
+    );
+}
 }

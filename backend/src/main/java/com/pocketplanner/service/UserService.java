@@ -56,4 +56,17 @@ public User updateUser(Long id, User updatedUser) {
 
     return userRepository.save(user);
 }
+public User changePassword(Long id, String oldPassword, String newPassword) {
+
+    User user = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+    if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
+        throw new RuntimeException("Current password is incorrect");
+    }
+
+    user.setPassword(passwordEncoder.encode(newPassword));
+
+    return userRepository.save(user);
+}
 }
