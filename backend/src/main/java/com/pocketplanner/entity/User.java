@@ -1,6 +1,7 @@
 package com.pocketplanner.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
@@ -15,6 +16,9 @@ public class User {
     private String password;
     private String role = "USER";
      private Double savingsGoal = 0.0;
+     private String phoneNumber;
+     private LocalDate dateOfBirth;
+
 
     public User() {}
 
@@ -59,4 +63,19 @@ public class User {
     public void setSavingsGoal(Double savingsGoal) {
         this.savingsGoal = savingsGoal;
     }
+    public String getPhoneNumber() {
+    return phoneNumber;
+}
+
+public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+}
+
+public LocalDate getDateOfBirth() {
+    return dateOfBirth;
+}
+
+public void setDateOfBirth(LocalDate dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
+}
 }

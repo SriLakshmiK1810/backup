@@ -51,6 +51,8 @@ public User updateUser(Long id, User updatedUser) {
 
     user.setName(updatedUser.getName());
     user.setEmail(updatedUser.getEmail());
+    user.setPhoneNumber(updatedUser.getPhoneNumber());
+    user.setDateOfBirth(updatedUser.getDateOfBirth());
 
     return userRepository.save(user);
 }
