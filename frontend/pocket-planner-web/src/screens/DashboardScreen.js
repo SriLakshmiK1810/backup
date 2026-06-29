@@ -88,8 +88,20 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-          <h2 style={sectionTitle}>Budget Usage</h2>
-          <div style={progressTrack}>
+          <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  Budget Usage
+</h2>
+          <div
+  style={{
+    ...progressTrack,
+    background: darkMode ? "#374151" : "#E5E7EB",
+  }}
+>
             <div
   style={{
     ...progressValue,
@@ -112,7 +124,12 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
   }}
 />
 </div>
-          <p style={{ margin: "10px 0 0", color: "#6B7280" }}>
+          <p
+  style={{
+    margin: "10px 0 0",
+    color: darkMode ? "#D1D5DB" : "#6B7280",
+  }}
+>
            ₹{dashboard.totalExpenses} of ₹{dashboard.totalBudget} used      </p>
         </section>
  <section
@@ -122,8 +139,14 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-  <h2 style={sectionTitle}>📅 Monthly Insights</h2>
-
+  <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  Monthly Insights
+</h2>
   <div style={overviewGrid}>
     <div>
       <p
@@ -179,12 +202,23 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-  <h2 style={sectionTitle}>Savings Goal</h2>
-
+ <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  Savings Goal
+</h2>
  <p>
   Goal: <strong>₹{latestBudget?.savingsGoal || 0}</strong>
 </p>
-  <div style={progressTrack}>
+  <div
+  style={{
+    ...progressTrack,
+    background: darkMode ? "#374151" : "#E5E7EB",
+  }}
+>
     <div
       style={{
         ...progressValue,
@@ -218,8 +252,14 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-  <h2 style={sectionTitle}>⚡ Quick Actions</h2>
-
+  <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  Quick Actions
+</h2>
   <div style={quickGrid}>
     <button
       style={{
@@ -254,7 +294,14 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-            <h2 style={sectionTitle}>Recent Expenses</h2>
+            <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  Recent Expenses
+</h2>
             {recentExpenses.length === 0 ? (
               <p>No expenses added yet</p>
             ) : (
@@ -276,7 +323,14 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-              <h2 style={sectionTitle}>Quick Stats</h2>
+              <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  Quick Stats
+</h2>
               <p>Food: 35%</p>
               <p>Travel: 25%</p>
               <p style={{ marginBottom: 0 }}>Shopping: 40%</p>
@@ -288,7 +342,14 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-              <h2 style={sectionTitle}>Recent Activity</h2>
+              <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  Recent Activity
+</h2>
               <p>🍔 Food Expense Added</p>
               <p>🚕 Travel Expense Added</p>
               <p style={{ marginBottom: 0 }}>💰 Budget Updated</p>
@@ -302,9 +363,18 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-  <h2 style={sectionTitle}>📊 Expense Breakdown</h2>
-
-  <PieChartComponent expenses={allExpenses} />
+  <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+ Expense Breakdown
+</h2>
+  <PieChartComponent
+  expenses={allExpenses}
+  darkMode={darkMode}
+/>
 </section>
         <section
   style={{
@@ -313,9 +383,20 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
     color: darkMode ? "#FFFFFF" : "#111827",
   }}
 >
-  <h2 style={sectionTitle}>💡 Tip of the Day</h2>
-
-  <p style={{ color: "#4B5563", marginBottom: "10px" }}>
+  <h2
+  style={{
+    ...sectionTitle,
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
+  Tip of the day
+</h2>
+<p
+  style={{
+    color: darkMode ? "#E5E7EB" : "#4B5563",
+    marginBottom: "10px",
+  }}
+>
     "Track every rupee today to build a stronger financial future tomorrow."
   </p>
 
@@ -370,11 +451,14 @@ function ExpenseItem({ label, value }) {
 
   return (
     <div
-      style={{
-        ...expenseItem,
-        color: darkMode ? "#FFFFFF" : "#374151",
-      }}
-    >
+  style={{
+    ...expenseItem,
+    color: darkMode ? "#FFFFFF" : "#374151",
+    borderBottom: darkMode
+      ? "1px solid #4B5563"
+      : "1px solid #E5E7EB",
+  }}
+>
       <span>{label}</span>
       <strong>{value}</strong>
     </div>
