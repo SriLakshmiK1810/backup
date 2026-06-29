@@ -50,7 +50,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
             .requestMatchers("/api/expenses/**").permitAll()
             .requestMatchers("/api/budgets/**").permitAll()
             .requestMatchers("/api/dashboard/**").permitAll()
-            .anyRequest().authenticated()
+            .anyRequest().permitAll()
         );
 
     return http.build();
