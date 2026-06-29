@@ -90,12 +90,17 @@ function BudgetScreen() {
     <div style={{ flex: 1 }}>
       <label style={label}>Budget Period</label>
       <select
-        value={budget.period}
-        onChange={(e) =>
-          setBudget({ ...budget, period: e.target.value })
-        }
-        style={input}
-      >
+  value={budget.period}
+  onChange={(e) => {
+    const period = e.target.value;
+    setBudget({
+      ...budget,
+      period,
+      endDate: calculateEndDate(budget.startDate, period),
+    });
+  }}
+  style={input}
+>
         <option>Daily</option>
         <option>Weekly</option>
         <option>Monthly</option>
@@ -105,13 +110,18 @@ function BudgetScreen() {
     <div style={{ flex: 1 }}>
       <label style={label}>Start Date</label>
       <input
-        type="date"
-        value={budget.startDate}
-        onChange={(e) =>
-          setBudget({ ...budget, startDate: e.target.value })
-        }
-        style={input}
-      />
+  type="date"
+  value={budget.startDate}
+  onChange={(e) => {
+    const startDate = e.target.value;
+    setBudget({
+      ...budget,
+      startDate,
+      endDate: calculateEndDate(startDate, budget.period),
+    });
+  }}
+  style={input}
+/>
     </div>
   </div>
 
