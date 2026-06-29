@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
-
+import java.util.List;
 @Configuration
 public class SecurityConfig {
 
@@ -23,8 +23,11 @@ public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
 
     configuration.addAllowedOrigin("http://localhost:3000");
+    configuration.addAllowedOrigin("https://backup-kappa-two.vercel.app");
+
     configuration.addAllowedHeader("*");
     configuration.addAllowedMethod("*");
+    configuration.setAllowCredentials(true);
 
     UrlBasedCorsConfigurationSource source =
             new UrlBasedCorsConfigurationSource();
