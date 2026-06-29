@@ -1,38 +1,46 @@
 import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-
+import api from "../services/api";
 function ProfileScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-
+  const [phoneNumber, setPhoneNumber] = useState("");
+const [dateOfBirth, setDateOfBirth] = useState("");
   useEffect(() => {
-    const user = JSON.parse(
-      localStorage.getItem("user")
-    );
+  const user = JSON.parse(localStorage.getItem("user"));
 
-    if (user) {
-      setName(user.name);
-      setEmail(user.email);
-    }
-  }, []);
+  if (user) {
+    setName(user.name || "");
+    setEmail(user.email || "");
+    setPhoneNumber(user.phoneNumber || "");
+    setDateOfBirth(user.dateOfBirth || "");
+  }
+}, []);
+const handleSave = async () => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
 
-  const handleSave = () => {
     const updatedUser = {
+      ...user,
       name,
       email,
-      password:
-        JSON.parse(localStorage.getItem("user"))
-          ?.password || "",
+      phoneNumber,
+      dateOfBirth,
     };
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify(updatedUser)
+    const response = await api.put(
+      `/users/${user.id}`,
+      updatedUser
     );
 
-    alert("Profile Updated Successfully!");
-  };
+    localStorage.setItem("user", JSON.stringify(response.data));
 
+    alert("Profile Updated Successfully!");
+  } catch (error) {
+    console.log(error);
+    alert("Failed to update profile");
+  }
+};
   return (
     <div style={{ display: "flex" }}>
       <Sidebar />
@@ -77,6 +85,26 @@ function ProfileScreen() {
             }
             style={inputStyle}
           />
+          <label>Phone Number</label>
+
+<input
+  type="tel"
+  value={phoneNumber}
+  onChange={(e) => setPhoneNumber(e.target.value)}
+  style={inputStyle}
+  placeholder="Enter phone number"
+/>
+
+<label>Date of Birth</label>
+
+<input
+  type="date"
+  value={dateOfBirth}
+  onChange={(e) => setDateOfBirth(e.target.value)}
+  style={inputStyle}
+/>
+
+
 
           <button
             onClick={handleSave}
