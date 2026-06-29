@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
+
 function ProfileScreen() {
+  
+const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -151,9 +155,12 @@ const handleSave = async () => {
         >
           <h2>Manage Account</h2>
 
-          <button style={actionButton}>
-            🔒 Change Password
-          </button>
+          <button
+    style={actionButton}
+    onClick={() => navigate("/change-password")}
+>
+    🔒 Change Password
+</button>
 
           <button style={actionButton}>
             📧 Change Email

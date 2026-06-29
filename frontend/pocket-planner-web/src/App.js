@@ -9,7 +9,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import WishlistScreen from "./screens/WishlistScreen";
 import ScanBillScreen from "./screens/ScanBillScreen";
-
+import ChangePasswordScreen from "./screens/ChangePasswordScreen";
 function App() {
   return (
     <BrowserRouter>
@@ -23,8 +23,9 @@ function App() {
   <Route path="/budget" element={<BudgetScreen />} />
   <Route path="/profile" element={<ProfileScreen />} />
   <Route path="/wishlist" element={<WishlistScreen />} />
-  
-<Route path="/scan-bill" element={<ScanBillScreen />} />
+  <Route path="/scan-bill" element={<ScanBillScreen />} />
+  <Route path="/change-password" element={<ChangePasswordScreen />}
+/>
 </Routes>
     </BrowserRouter>
   );
