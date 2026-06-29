@@ -41,6 +41,8 @@ const handleSave = async () => {
     alert("Failed to update profile");
   }
 };
+
+
   return (
     <div style={{ display: "flex" }}>
       <Sidebar />
@@ -112,7 +114,71 @@ const handleSave = async () => {
           >
             Save Changes
           </button>
+                </div>
+
+        {/* Account Details */}
+        <div
+          style={{
+            background: "#fff",
+            padding: "30px",
+            borderRadius: "20px",
+            maxWidth: "600px",
+            marginTop: "25px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+          }}
+        >
+          <h2>Account Details</h2>
+
+          <p><strong>Account ID:</strong> {JSON.parse(localStorage.getItem("user"))?.id}</p>
+
+          <p><strong>Account Type:</strong> USER</p>
+
+          <p><strong>Email:</strong> {email}</p>
+
+          <p><strong>Savings Goal:</strong> ₹{JSON.parse(localStorage.getItem("user"))?.savingsGoal || 0}</p>
         </div>
+
+        {/* Manage Account */}
+        <div
+          style={{
+            background: "#fff",
+            padding: "30px",
+            borderRadius: "20px",
+            maxWidth: "600px",
+            marginTop: "25px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+          }}
+        >
+          <h2>Manage Account</h2>
+
+          <button style={actionButton}>
+            🔒 Change Password
+          </button>
+
+          <button style={actionButton}>
+            📧 Change Email
+          </button>
+
+          <button style={actionButton}>
+            📤 Export My Data
+          </button>
+
+          <button style={deleteButton}>
+            🗑 Delete Account
+          </button>
+        </div>
+
+        {/* Logout */}
+        <button
+          style={logoutButton}
+          onClick={() => {
+            localStorage.clear();
+            window.location.href = "/login";
+          }}
+        >
+          🚪 Logout
+        </button>
+
       </div>
     </div>
   );
@@ -137,5 +203,34 @@ const buttonStyle = {
   borderRadius: "12px",
   cursor: "pointer",
 };
+const actionButton = {
+  width: "100%",
+  padding: "14px",
+  marginBottom: "12px",
+  background: "#F3F4F6",
+  border: "1px solid #E5E7EB",
+  borderRadius: "10px",
+  cursor: "pointer",
+  textAlign: "left",
+  fontSize: "16px",
+};
 
+const deleteButton = {
+  ...actionButton,
+  background: "#FEE2E2",
+  color: "#DC2626",
+};
+
+const logoutButton = {
+  marginTop: "25px",
+  width: "600px",
+  padding: "15px",
+  background: "#EF4444",
+  color: "#fff",
+  border: "none",
+  borderRadius: "12px",
+  fontSize: "17px",
+  fontWeight: "600",
+  cursor: "pointer",
+};
 export default ProfileScreen;
