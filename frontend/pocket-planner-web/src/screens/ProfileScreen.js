@@ -162,17 +162,21 @@ const handleSave = async () => {
     🔒 Change Password
 </button>
 
-          <button style={actionButton}>
-            📧 Change Email
-          </button>
+          <button
+    style={actionButton}
+    onClick={() => navigate("/change-email")}
+>
+    📧 Change Email
+</button>
 
           <button style={actionButton}>
-            📤 Export My Data
+            Export My Data
           </button>
 
-          <button style={deleteButton}>
-            🗑 Delete Account
-          </button>
+          <button style={deleteButton}
+            onClick={() => navigate("/delete-account")}
+            > Delete Account
+</button>
         </div>
 
         {/* Logout */}
