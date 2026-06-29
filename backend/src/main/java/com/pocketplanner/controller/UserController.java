@@ -1,10 +1,12 @@
 package com.pocketplanner.controller;
+import com.pocketplanner.dto.ChangeEmailRequest;
 import com.pocketplanner.dto.ChangePasswordRequest;
 import com.pocketplanner.entity.User;
 import com.pocketplanner.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.pocketplanner.dto.ChangePasswordRequest;
+
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin(origins = {
@@ -49,5 +51,20 @@ public User changePassword(
             request.getOldPassword(),
             request.getNewPassword()
     );
+}
+@PutMapping("/{id}/change-email")
+public User changeEmail(
+        @PathVariable Long id,
+        @RequestBody ChangeEmailRequest request) {
+
+    return userService.changeEmail(
+            id,
+            request.getPassword(),
+            request.getNewEmail()
+    );
+}
+@DeleteMapping("/{id}")
+public void deleteUser(@PathVariable Long id) {
+    userService.deleteUser(id);
 }
 }

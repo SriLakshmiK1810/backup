@@ -18,6 +18,7 @@ public class User {
      private Double savingsGoal = 0.0;
      private String phoneNumber;
      private LocalDate dateOfBirth;
+     private boolean active = true;
 
 
     public User() {}
@@ -77,5 +78,12 @@ public LocalDate getDateOfBirth() {
 
 public void setDateOfBirth(LocalDate dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
+}
+public boolean isActive() {
+    return active;
+}
+
+public void setActive(boolean active) {
+    this.active = active;
 }
 }
