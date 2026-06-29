@@ -11,7 +11,7 @@ function DashboardScreen() {
   totalExpenses: 0,
   remainingBalance: 0,
 });
-
+const [latestBudget, setLatestBudget] = useState(null);
 const [allExpenses, setAllExpenses] = useState([]);
 const [recentExpenses, setRecentExpenses] = useState([]);
 useEffect(() => {
@@ -25,6 +25,8 @@ const fetchDashboard = async () => {
 
     const expenseResponse = await api.get("/expenses");
     setAllExpenses(expenseResponse.data);
+    const budgetResponse = await api.get("/budgets/latest");
+setLatestBudget(budgetResponse.data);
 setRecentExpenses(expenseResponse.data.slice(-5).reverse());
   } catch (error) {
     console.log(error);
@@ -129,18 +131,21 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
        <section style={sectionCard}>
   <h2 style={sectionTitle}>Savings Goal</h2>
 
-  <p>
-    Goal: <strong>₹20,000</strong>
-  </p>
-
+ <p>
+  Goal: <strong>₹{latestBudget?.savingsGoal || 0}</strong>
+</p>
   <div style={progressTrack}>
     <div
       style={{
         ...progressValue,
-        width: `${Math.min(
-          (dashboard.remainingBalance / 20000) * 100,
-          100
-        )}%`,
+        width: `${
+  latestBudget?.savingsGoal
+    ? Math.min(
+        (dashboard.remainingBalance / latestBudget.savingsGoal) * 100,
+        100
+      )
+    : 0
+}%`,
         background: "#22C55E",
       }}
     />
@@ -148,6 +153,12 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
 
   <p style={{ marginTop: "15px" }}>
     Current Savings: <strong>₹{dashboard.remainingBalance}</strong>
+
+<p style={{ marginTop: "10px" }}>
+  {dashboard.remainingBalance >= (latestBudget?.savingsGoal || 0)
+    ? "🎉 Congratulations! You reached your savings goal."
+    : `₹${((latestBudget?.savingsGoal || 0) - dashboard.remainingBalance).toFixed(0)} more to reach your goal.`}
+</p>
   </p>
 </section>
 <section style={sectionCard}>
@@ -264,12 +275,6 @@ const summaryCard = {
   boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
 };
 
-const sectionCard = {
-  background: "#FFFFFF",
-  padding: "25px",
-  borderRadius: "20px",
-  boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
-};
 
 const expenseItem = {
   display: "flex",
@@ -318,11 +323,10 @@ const sectionTitle = {
 
 const overviewGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "20px",
-  marginTop: "20px",
+  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+  gap: "30px",
+  marginTop: "25px",
 };
-
 const overviewLabel = {
   color: "#6B7280",
   marginBottom: "5px",
@@ -345,5 +349,12 @@ const quickCard = {
   boxShadow: "0 4px 15px rgba(0,0,0,0.08)",
   color: "#111827",
   fontSize: "16px",
+};
+const sectionCard = {
+  background: "#FFFFFF",
+  padding: "25px",
+  borderRadius: "20px",
+  boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+  marginBottom: "25px",   // Add this
 };
 export default DashboardScreen;
