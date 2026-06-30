@@ -32,7 +32,8 @@ navigate("/dashboard");
     alert(error.message);
   }
 };
-  return (
+  
+ return (
   <div
     style={{
       minHeight: "100vh",
@@ -53,6 +54,7 @@ navigate("/dashboard");
         backgroundColor: "#FFFFFF",
       }}
     >
+    
       <h1
         style={{
           textAlign: "center",
