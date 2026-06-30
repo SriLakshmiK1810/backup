@@ -62,18 +62,23 @@ if (expenses.length === 0) {
   return (
    <div
   style={{
-    width: "350px",
+    width: "100%",
+    maxWidth: "450px",
     margin: "auto",
     background: darkMode ? "#1F2937" : "#FFFFFF",
     padding: "15px",
     borderRadius: "15px",
+    boxSizing: "border-box",
   }}
 >
-      <Pie
+<Pie
   data={data}
   options={{
+    responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
+        position: "bottom",
         labels: {
           color: darkMode ? "#FFFFFF" : "#111827",
         },

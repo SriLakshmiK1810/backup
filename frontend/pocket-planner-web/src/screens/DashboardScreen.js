@@ -490,9 +490,10 @@ const mainContent = {
 
 const summaryGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+  gridTemplateColumns: window.innerWidth < 768
+    ? "1fr"
+    : "repeat(3, 1fr)",
   gap: "20px",
-  marginBottom: "30px",
 };
 const summaryCard = {
   padding: "25px",
@@ -515,7 +516,9 @@ const expenseItem = {
 
 const detailsGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+  gridTemplateColumns: isMobile
+  ? "1fr"
+  : "1.5fr 1fr",
   gap: "20px",
 };
 
