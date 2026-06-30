@@ -1,20 +1,36 @@
 import { useNavigate } from "react-router-dom";
-
 function WelcomeScreen() {
   const navigate = useNavigate();
+  
 
   return (
-    <div style={container}>
+    <div
+  style={{
+    ...container,
+    background: darkMode ? "#111827" : "#F8FAFC",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
       <div style={{ fontSize: "90px", marginBottom: "20px" }}>
   💰
 </div>
 
 <h1 style={title}>PocketPlanner</h1>
-      <h2 style={tagline}>
-        Spend Mindfully, Save Intentionally
-      </h2>
+      <h2
+  style={{
+    ...tagline,
+    color: darkMode ? "#FFFFFF" : "#374151",
+  }}
+>
+  Spend Mindfully, Save Intentionally
+</h2>
 
-      <p style={description}>
+      <p
+  style={{
+    ...description,
+    color: darkMode ? "#D1D5DB" : "#6B7280",
+  }}
+>
   Manage your expenses, set budgets, track your savings,
   and build better financial habits.
 </p>
@@ -23,7 +39,13 @@ function WelcomeScreen() {
   Why PocketPlanner?
 </h3>
 
-<div style={featureBox}>
+<div
+  style={{
+    ...featureBox,
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+>
   <p>✅ Track Daily Expenses</p>
   <p>✅ Set Monthly Budgets</p>
   <p>✅ Monitor Your Savings</p>
@@ -94,14 +116,12 @@ const description = {
 };
 
 const featureBox = {
-  background: "white",
   padding: "20px",
   borderRadius: "15px",
   boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
   marginBottom: "30px",
   lineHeight: "2",
 };
-
 const primaryButton = {
   width: "250px",
   padding: "14px",
