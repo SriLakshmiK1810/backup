@@ -3,8 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(FinalizationRegistry);
-
+  const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
     document.body.style.backgroundColor = darkMode
       ? "#111827"
