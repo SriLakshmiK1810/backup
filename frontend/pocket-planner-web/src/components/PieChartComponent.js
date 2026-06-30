@@ -47,10 +47,13 @@ if (expenses.length === 0) {
   return (
     <div
       style={{
-        textAlign: "center",
-        color: darkMode ? "#FFFFFF" : "#111827",
-        padding: "20px",
-      }}
+    width: "100%",
+    maxWidth: "450px",
+    margin: "auto",
+    background: darkMode ? "#1F2937" : "#FFFFFF",
+    padding: "15px",
+    borderRadius: "15px",
+  }}
     >
       No expense data available.
     </div>

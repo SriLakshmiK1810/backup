@@ -7,6 +7,17 @@ import { useTheme } from "../context/ThemeContext";
 function DashboardScreen() {
   const navigate = useNavigate();
   const { darkMode } = useTheme();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
   const [dashboard, setDashboard] = useState({
   totalBudget: 0,
   totalExpenses: 0,
@@ -34,16 +45,20 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
   }
 };
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      <Sidebar />
+  <div style={{ display: "flex", minHeight: "100vh" }}>
+  <Sidebar />
 
-      <main
-  style={{
-    ...mainContent,
-    background: darkMode ? "#111827" : "#F8FAFC",
-    color: darkMode ? "#FFFFFF" : "#111827",
-  }}
->
+  <main
+    style={{
+      ...mainContent,
+      background: darkMode ? "#111827" : "#F8FAFC",
+      color: darkMode ? "#FFFFFF" : "#111827",
+      marginLeft: isMobile ? "0" : "250px",
+marginTop: isMobile ? "70px" : "0",
+padding: isMobile ? "15px" : "30px",
+      transition: "0.3s",
+    }}
+  >
         <header style={{ marginBottom: "30px" }}>
           <h1
   style={{
@@ -467,29 +482,31 @@ function ExpenseItem({ label, value }) {
 
 const mainContent = {
   flex: 1,
-  padding: "35px",
-  background: "#F8FAFC",
+  padding: "20px",
   minWidth: 0,
+  boxSizing: "border-box",
+  overflowX: "hidden",
 };
 
 const summaryGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+  gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
   gap: "20px",
   marginBottom: "30px",
 };
-
 const summaryCard = {
-  background: "#FFFFFF",
   padding: "25px",
   borderRadius: "20px",
   boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+  width: "100%",
+  boxSizing: "border-box",
 };
-
-
 const expenseItem = {
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
+  flexWrap: "wrap",
+  gap: "10px",
   padding: "14px 0",
   borderBottom: "1px solid #E5E7EB",
   color: "#374151",
@@ -498,7 +515,7 @@ const expenseItem = {
 
 const detailsGrid = {
   display: "grid",
-  gridTemplateColumns: "1.5fr 1fr",
+  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
   gap: "20px",
 };
 
@@ -546,11 +563,11 @@ const overviewLabel = {
 
 const quickGrid = {
   display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
   gap: "20px",
 };
-
 const quickCard = {
+  width: "100%",
   padding: "25px",
   border: "none",
   borderRadius: "18px",
@@ -563,9 +580,11 @@ const quickCard = {
 };
 const sectionCard = {
   background: "#FFFFFF",
-  padding: "25px",
+  padding: "20px",
   borderRadius: "20px",
   boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
-  marginBottom: "25px",   // Add this
+  marginBottom: "25px",
+  width: "100%",
+  boxSizing: "border-box",
 };
 export default DashboardScreen;
