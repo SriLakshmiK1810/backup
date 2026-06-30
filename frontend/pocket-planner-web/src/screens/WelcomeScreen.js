@@ -4,33 +4,17 @@ function WelcomeScreen() {
   
 
   return (
-    <div
-  style={{
-    ...container,
-    background: darkMode ? "#111827" : "#F8FAFC",
-    color: darkMode ? "#FFFFFF" : "#111827",
-  }}
->
+    <div style={container}>
       <div style={{ fontSize: "90px", marginBottom: "20px" }}>
   💰
 </div>
 
 <h1 style={title}>PocketPlanner</h1>
-      <h2
-  style={{
-    ...tagline,
-    color: darkMode ? "#FFFFFF" : "#374151",
-  }}
->
+      <h2 style={tagline}>
   Spend Mindfully, Save Intentionally
 </h2>
 
-      <p
-  style={{
-    ...description,
-    color: darkMode ? "#D1D5DB" : "#6B7280",
-  }}
->
+      <p style={description}>
   Manage your expenses, set budgets, track your savings,
   and build better financial habits.
 </p>
@@ -42,8 +26,8 @@ function WelcomeScreen() {
 <div
   style={{
     ...featureBox,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827",
   }}
 >
   <p>✅ Track Daily Expenses</p>
@@ -53,7 +37,13 @@ function WelcomeScreen() {
   <p>✅ Designed for Indian Households 🇮🇳</p>
 </div>
 
-      <div style={featureBox}>
+      <div
+  style={{
+    ...featureBox,
+    background: "#FFFFFF",
+    color: "#111827",
+  }}
+>
         <p>💰 Smart Budget Management</p>
         <p>📊 Expense Tracking</p>
         <p>🎯 Savings Goals</p>
