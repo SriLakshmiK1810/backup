@@ -33,14 +33,24 @@ navigate("/dashboard");
   }
 };
   return (
+  <div
+    style={{
+      minHeight: "100vh",
+      background: "#F8FAFC",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: "20px",
+    }}
+  >
     <div
       style={{
+        width: "100%",
         maxWidth: "450px",
-        margin: "100px auto",
         padding: "30px",
         borderRadius: "12px",
         boxShadow: "0 0 15px rgba(0,0,0,0.1)",
-        backgroundColor: "#fff",
+        backgroundColor: "#FFFFFF",
       }}
     >
       <h1
@@ -107,8 +117,9 @@ navigate("/dashboard");
           Login
         </Link>
       </p>
-    </div>
-  );
+        </div>
+  </div>
+);
 }
 
 const inputStyle = {
@@ -118,6 +129,8 @@ const inputStyle = {
   borderRadius: "6px",
   border: "1px solid #ccc",
   boxSizing: "border-box",
+  background: "#FFFFFF",
+  color: "#111827",
 };
 
 const buttonStyle = {

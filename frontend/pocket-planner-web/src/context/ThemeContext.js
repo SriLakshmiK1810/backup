@@ -5,14 +5,10 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
-    document.body.style.backgroundColor = darkMode
-      ? "#111827"
-      : "#F8FAFC";
-
-    document.body.style.color = darkMode
-      ? "#FFFFFF"
-      : "#111827";
-  }, [darkMode]);
+  document.body.style.backgroundColor = darkMode
+    ? "#111827"
+    : "#F8FAFC";
+}, [darkMode]);
 
   return (
     <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
