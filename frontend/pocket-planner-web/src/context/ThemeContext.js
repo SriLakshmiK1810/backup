@@ -3,13 +3,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("darkMode") === "true"
-  );
+  const [darkMode, setDarkMode] = useState(FinalizationRegistry);
 
   useEffect(() => {
-    localStorage.setItem("darkMode", darkMode);
-
     document.body.style.backgroundColor = darkMode
       ? "#111827"
       : "#F8FAFC";

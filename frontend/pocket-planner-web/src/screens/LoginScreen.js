@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { useTheme } from "../context/ThemeContext";
 function LoginScreen() {
   const navigate = useNavigate();
+  const { darkMode } = useTheme();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,58 +31,60 @@ function LoginScreen() {
 };
 
   return (
+  <div
+    style={{
+      minHeight: "100vh",
+      background: darkMode ? "#111827" : "#F8FAFC",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: "20px",
+    }}
+  >
     <div
       style={{
+        width: "100%",
         maxWidth: "400px",
-        margin: "100px auto",
+        background: darkMode ? "#1F2937" : "#FFFFFF",
+        color: darkMode ? "#FFFFFF" : "#111827",
         padding: "30px",
-        borderRadius: "12px",
-        boxShadow: "0 0 15px rgba(0,0,0,0.1)",
-        backgroundColor: "#fff",
+        borderRadius: "15px",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
       }}
     >
-      <h1
-        style={{
-          textAlign: "center",
-          color: "#2563EB",
-        }}
-      >
+      <h1 style={{ textAlign: "center", color: "#2563EB" }}>
         Pocket Planner
       </h1>
 
       <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) =>
-          setEmail(e.target.value)
-        }
-        style={inputStyle}
-      />
+  type="email"
+  placeholder="Email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  style={{
+    ...inputStyle,
+    background: darkMode ? "#374151" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+/>
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) =>
-          setPassword(e.target.value)
-        }
-        style={inputStyle}
-      />
+<input
+  type="password"
+  placeholder="Password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  style={{
+    ...inputStyle,
+    background: darkMode ? "#374151" : "#FFFFFF",
+    color: darkMode ? "#FFFFFF" : "#111827",
+  }}
+/>
 
-      <button
-        onClick={handleLogin}
-        style={buttonStyle}
-      >
+      <button onClick={handleLogin} style={buttonStyle}>
         Login
       </button>
 
-      <p
-        style={{
-          textAlign: "center",
-          marginTop: "15px",
-        }}
-      >
+      <p style={{ textAlign: "center", marginTop: "15px" }}>
         Don't have an account?{" "}
         <Link
           to="/register"
@@ -94,7 +98,8 @@ function LoginScreen() {
         </Link>
       </p>
     </div>
-  );
+  </div>
+);
 }
 
 const inputStyle = {
@@ -105,7 +110,6 @@ const inputStyle = {
   border: "1px solid #ccc",
   boxSizing: "border-box",
 };
-
 const buttonStyle = {
   width: "100%",
   padding: "12px",
