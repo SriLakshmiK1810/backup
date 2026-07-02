@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import api from "../services/api";
 import PieChartComponent from "../components/PieChartComponent";
-import { useTheme } from "../context/ThemeContext";
 function DashboardScreen() {
   const navigate = useNavigate();
-  const { darkMode } = useTheme();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
 useEffect(() => {
@@ -51,9 +49,9 @@ setRecentExpenses(expenseResponse.data.slice(-5).reverse());
   <main
     style={{
       ...mainContent,
-      background: darkMode ? "#111827" : "#F8FAFC",
-      color: darkMode ? "#FFFFFF" : "#111827",
-      marginLeft: isMobile ? "0" : "250px",
+     background: "#F8FAFC",
+color: "#111827",
+ marginLeft: isMobile ? "0" : "250px",
 marginTop: isMobile ? "70px" : "0",
 padding: isMobile ? "15px" : "30px",
       transition: "0.3s",
@@ -62,14 +60,14 @@ padding: isMobile ? "15px" : "30px",
         <header style={{ marginBottom: "30px" }}>
           <h1
   style={{
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color: "#111827",
     margin: "0 0 5px",
   }}
 >
             Welcome Back 👋
           </h1><p
   style={{
-    color: darkMode ? "#D1D5DB" : "#6B7280",
+    color: "#6B7280",
     margin: 0,
   }}
 >
@@ -99,14 +97,14 @@ padding: isMobile ? "15px" : "30px",
         <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827"
   }}
 >
           <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color: "#111827",
   }}
 >
   Budget Usage
@@ -114,7 +112,7 @@ padding: isMobile ? "15px" : "30px",
           <div
   style={{
     ...progressTrack,
-    background: darkMode ? "#374151" : "#E5E7EB",
+    background: "#E5E7EB",
   }}
 >
             <div
@@ -142,7 +140,7 @@ padding: isMobile ? "15px" : "30px",
           <p
   style={{
     margin: "10px 0 0",
-    color: darkMode ? "#D1D5DB" : "#6B7280",
+    color: "#6B7280",
   }}
 >
            ₹{dashboard.totalExpenses} of ₹{dashboard.totalBudget} used      </p>
@@ -150,14 +148,14 @@ padding: isMobile ? "15px" : "30px",
  <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827",
   }}
 >
   <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color: "#111827",
   }}
 >
   Monthly Insights
@@ -167,7 +165,7 @@ padding: isMobile ? "15px" : "30px",
       <p
   style={{
     ...overviewLabel,
-    color: darkMode ? "#D1D5DB" : "#6B7280",
+    color: "#6B7280",
   }}
 >Expenses Logged</p>
       <h3>{recentExpenses.length}</h3>
@@ -177,7 +175,7 @@ padding: isMobile ? "15px" : "30px",
       <p
   style={{
     ...overviewLabel,
-    color: darkMode ? "#D1D5DB" : "#6B7280",
+    color: "#6B7280",
   }}
 >Average Expense</p>
       <h3>
@@ -194,7 +192,7 @@ padding: isMobile ? "15px" : "30px",
       <p
   style={{
     ...overviewLabel,
-    color: darkMode ? "#D1D5DB" : "#6B7280",
+    color: "#6B7280"
   }}
 >Largest Expense</p>
       <h3>
@@ -213,14 +211,14 @@ padding: isMobile ? "15px" : "30px",
       <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827",
   }}
 >
  <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color: "#111827",
   }}
 >
   Savings Goal
@@ -231,7 +229,7 @@ padding: isMobile ? "15px" : "30px",
   <div
   style={{
     ...progressTrack,
-    background: darkMode ? "#374151" : "#E5E7EB",
+    background: "#E5E7EB",
   }}
 >
     <div
@@ -263,14 +261,14 @@ padding: isMobile ? "15px" : "30px",
 <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color:  "#111827",
   }}
 >
   <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color: "#111827",
   }}
 >
   Quick Actions
@@ -279,8 +277,8 @@ padding: isMobile ? "15px" : "30px",
     <button
       style={{
   ...quickCard,
-  background: darkMode ? "#374151" : "#EEF4FF",
-  color: darkMode ? "#FFFFFF" : "#111827",
+  background: "#EEF4FF",
+  color:  "#111827",
 }}
       onClick={() => navigate("/add-expense")}
     >
@@ -291,8 +289,8 @@ padding: isMobile ? "15px" : "30px",
     <button
       style={{
   ...quickCard,
-  background: darkMode ? "#374151" : "#EEF4FF",
-  color: darkMode ? "#FFFFFF" : "#111827",
+  background: "#EEF4FF",
+  color: "#111827",
 }}
       onClick={() => navigate("/scan-bill")}
     >
@@ -305,14 +303,14 @@ padding: isMobile ? "15px" : "30px",
           <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827",
   }}
 >
             <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color:  "#111827",
   }}
 >
   Recent Expenses
@@ -334,14 +332,14 @@ padding: isMobile ? "15px" : "30px",
            <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827",
   }}
 >
               <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color: "#111827",
   }}
 >
   Quick Stats
@@ -353,14 +351,14 @@ padding: isMobile ? "15px" : "30px",
             <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827",
   }}
 >
               <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color:  "#111827",
   }}
 >
   Recent Activity
@@ -374,50 +372,45 @@ padding: isMobile ? "15px" : "30px",
         <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827",
   }}
 >
   <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color:  "#111827",
   }}
 >
  Expense Breakdown
 </h2>
   <PieChartComponent
   expenses={allExpenses}
-  darkMode={darkMode}
+  darkMode={false}
 />
 </section>
         <section
   style={{
     ...sectionCard,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+    color: "#111827",
   }}
 >
   <h2
   style={{
     ...sectionTitle,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color:  "#111827",
   }}
 >
   Tip of the day
 </h2>
-<p
-  style={{
-    color: darkMode ? "#E5E7EB" : "#4B5563",
-    marginBottom: "10px",
-  }}
->
-    "Track every rupee today to build a stronger financial future tomorrow."
-  </p>
+<p style={{ color: "#4B5563", marginBottom: "10px" }}>
+  "Track every rupee today to build a stronger financial future tomorrow."
+</p>
 
   <p
   style={{
-    color: darkMode ? "#D1D5DB" : "#6B7280",
+    color: "#6B7280",
     margin: 0,
   }}
 >
@@ -430,20 +423,20 @@ padding: isMobile ? "15px" : "30px",
 }
 
 function SummaryCard({ label, value }) {
-  const { darkMode } = useTheme();
+  
 
   return (
     <div
       style={{
         ...summaryCard,
-        background: darkMode ? "#1F2937" : "#FFFFFF",
-        color: darkMode ? "#FFFFFF" : "#111827",
+        background: "#FFFFFF",
+        color: "#111827",
       }}
     >
      <p
   style={{
     ...cardLabel,
-    color: darkMode ? "#D1D5DB" : "#6B7280",
+    color: "#6B7280",
   }}
 >
   {label}
@@ -451,7 +444,7 @@ function SummaryCard({ label, value }) {
       <h2
   style={{
     ...cardValue,
-    color: darkMode ? "#FFFFFF" : "#111827",
+    color: "#111827",
   }}
 >
   {value}
@@ -462,16 +455,15 @@ function SummaryCard({ label, value }) {
 
 
 function ExpenseItem({ label, value }) {
-  const { darkMode } = useTheme();
+  
 
   return (
     <div
   style={{
-    ...expenseItem,
-    color: darkMode ? "#FFFFFF" : "#374151",
-    borderBottom: darkMode
-      ? "1px solid #4B5563"
-      : "1px solid #E5E7EB",
+  ...expenseItem,
+  color: "#374151",
+  borderBottom: "1px solid #E5E7EB",
+
   }}
 >
       <span>{label}</span>

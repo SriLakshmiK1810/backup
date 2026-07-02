@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
-import { useTheme } from "../context/ThemeContext";
 function LoginScreen() {
   const navigate = useNavigate();
-  const { darkMode } = useTheme();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +32,7 @@ function LoginScreen() {
   <div
     style={{
       minHeight: "100vh",
-      background: darkMode ? "#111827" : "#F8FAFC",
+      background: "#F8FAFC",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -45,8 +43,8 @@ function LoginScreen() {
       style={{
         width: "100%",
         maxWidth: "400px",
-        background: darkMode ? "#1F2937" : "#FFFFFF",
-        color: darkMode ? "#FFFFFF" : "#111827",
+        background: "#FFFFFF",
+color: "#111827",
         padding: "30px",
         borderRadius: "15px",
         boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
@@ -63,8 +61,8 @@ function LoginScreen() {
   onChange={(e) => setEmail(e.target.value)}
   style={{
     ...inputStyle,
-    background: darkMode ? "#374151" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+   background: "#FFFFFF",
+color: "#111827",
   }}
 />
 
@@ -75,8 +73,8 @@ function LoginScreen() {
   onChange={(e) => setPassword(e.target.value)}
   style={{
     ...inputStyle,
-    background: darkMode ? "#374151" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+  background: "#FFFFFF",
+color: "#111827",
   }}
 />
 

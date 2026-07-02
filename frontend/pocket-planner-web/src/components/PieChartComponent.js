@@ -13,7 +13,7 @@ ChartJS.register(
   Legend
 );
 
-function PieChartComponent({ expenses, darkMode }) {
+function PieChartComponent({ expenses }) {
   const categoryTotals = {};
 
   expenses.forEach((expense) => {
@@ -50,7 +50,7 @@ if (expenses.length === 0) {
     width: "100%",
     maxWidth: "450px",
     margin: "auto",
-    background: darkMode ? "#1F2937" : "#FFFFFF",
+    background:"#FFFFFF",
     padding: "15px",
     borderRadius: "15px",
   }}
@@ -65,7 +65,7 @@ if (expenses.length === 0) {
     width: "100%",
     maxWidth: "450px",
     margin: "auto",
-    background: darkMode ? "#1F2937" : "#FFFFFF",
+    background: "#FFFFFF",
     padding: "15px",
     borderRadius: "15px",
     boxSizing: "border-box",
@@ -80,15 +80,16 @@ if (expenses.length === 0) {
       legend: {
         position: "bottom",
         labels: {
-          color: darkMode ? "#FFFFFF" : "#111827",
+          color: "#111827",
         },
       },
       tooltip: {
-        backgroundColor: darkMode ? "#1F2937" : "#FFFFFF",
-        titleColor: darkMode ? "#FFFFFF" : "#111827",
-        bodyColor: darkMode ? "#FFFFFF" : "#111827",
-        borderColor: darkMode ? "#4B5563" : "#E5E7EB",
-        borderWidth: 1,
+  backgroundColor: "#FFFFFF",
+  titleColor: "#111827",
+  bodyColor: "#111827",
+  borderColor: "#E5E7EB",
+  borderWidth: 1,
+
       },
     },
   }}

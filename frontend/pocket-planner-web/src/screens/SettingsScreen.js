@@ -1,11 +1,7 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
-import { useTheme } from "../context/ThemeContext";
 
 function SettingsScreen() {
-
- 
-const { darkMode, setDarkMode } = useTheme();
 
 const [notifications, setNotifications] = useState(
   localStorage.getItem("notifications") !== "false"
@@ -15,13 +11,11 @@ const [currency, setCurrency] = useState(
   localStorage.getItem("currency") || "INR"
 );
   const handleSave = () => {
+  localStorage.setItem("notifications", notifications);
+  localStorage.setItem("currency", currency);
 
-    localStorage.setItem("darkMode", darkMode);
-    localStorage.setItem("notifications", notifications);
-    localStorage.setItem("currency", currency);
-
-    alert("Settings saved successfully!");
-  };
+  alert("Settings saved successfully!");
+};
 
   return (
     <div style={{ display: "flex" }}>
@@ -29,10 +23,10 @@ const [currency, setCurrency] = useState(
 
       <div
   style={{
-    ...mainContent,
-    background: darkMode ? "#111827" : "#F8FAFC",
-    color: darkMode ? "#FFFFFF" : "#111827",
-  }}
+  ...mainContent,
+  background: "#F8FAFC",
+  color: "#111827",
+}}
 >
 
         <h1>Settings</h1>
@@ -40,24 +34,12 @@ const [currency, setCurrency] = useState(
         <div
   style={{
     ...card,
-    background: darkMode ? "#1F2937" : "#FFFFFF",
-    color: darkMode ? "#FFFFFF" : "#111827",
+    background: "#FFFFFF",
+  color: "#111827",
   }}
 >
 
-          <h2>Appearance</h2>
-
-          <div style={row}>
-            <span>🌙 Dark Mode</span>
-
-            <input
-              type="checkbox"
-              checked={darkMode}
-              onChange={() => setDarkMode(!darkMode)}
-            />
-          </div>
-
-          <hr />
+          
 
           <h2>Notifications</h2>
 
@@ -78,7 +60,13 @@ const [currency, setCurrency] = useState(
           <h2>Currency</h2>
 
           <select
-            style={selectStyle}
+  style={{
+  ...selectStyle,
+  background: "#FFFFFF",
+  color: "#111827",
+  border: "1px solid #D1D5DB",
+}}
+  
             value={currency}
             onChange={(e) =>
               setCurrency(e.target.value)
