@@ -497,7 +497,7 @@ const summaryCard = {
   borderRadius: "20px",
   boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
   width: "100%",
-  boxSizing: "border-box",
+  boxSizing: "border-box"
 };
 const expenseItem = {
   display: "flex",
