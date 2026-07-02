@@ -10,7 +10,7 @@ function Sidebar() {
     const resize = () => {
       setMobile(window.innerWidth < 768);
     
-     if (!isMobile) {
+     if (window.innerWidth >= 768){
       setOpen(false);
     }
   };

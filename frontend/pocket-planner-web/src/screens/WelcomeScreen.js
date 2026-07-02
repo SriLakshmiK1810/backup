@@ -37,7 +37,7 @@ function WelcomeScreen() {
   <p>✅ Designed for Indian Households 🇮🇳</p>
 </div>
 
-      <div
+      {/* <div
   style={{
     ...featureBox,
     background: "#FFFFFF",
@@ -49,7 +49,7 @@ function WelcomeScreen() {
         <p>🎯 Savings Goals</p>
         <p>🔒 100% Private</p>
         <p>🇮🇳 Designed for Indian Households</p>
-      </div>
+      </div> */}
 
       <button
         style={primaryButton}
