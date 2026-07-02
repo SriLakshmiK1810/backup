@@ -299,7 +299,12 @@ padding: isMobile ? "15px" : "30px",
     </button>
   </div>
 </section>
-        <div style={detailsGrid}>
+        <div
+  style={{
+    ...detailsGrid,
+    gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr",
+  }}
+>
           <section
   style={{
     ...sectionCard,
@@ -508,9 +513,7 @@ const expenseItem = {
 
 const detailsGrid = {
   display: "grid",
-  gridTemplateColumns: isMobile
-  ? "1fr"
-  : "1.5fr 1fr",
+  gridTemplateColumns: "1.5fr 1fr",
   gap: "20px",
 };
 
