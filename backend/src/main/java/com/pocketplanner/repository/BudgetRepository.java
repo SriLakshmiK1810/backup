@@ -11,12 +11,13 @@ import java.util.Optional;
 @Repository
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
 
-    Budget findTopByOrderByIdDesc();
+    Budget findTopByUserIdOrderByIdDesc(Long userId);
 
-    List<Budget> findAllByOrderByStartDateDesc();
+List<Budget> findByUserIdOrderByStartDateDesc(Long userId);
 
-    Optional<Budget> findFirstByStartDateLessThanEqualAndEndDateGreaterThanEqual(
-            LocalDate startDate,
-            LocalDate endDate
-    );
+Optional<Budget> findFirstByUserIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
+        Long userId,
+        LocalDate startDate,
+        LocalDate endDate
+);
 }

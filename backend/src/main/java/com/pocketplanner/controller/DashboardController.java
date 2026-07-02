@@ -17,30 +17,24 @@ public class DashboardController {
     @Autowired
     private BudgetRepository budgetRepository;
 
-    @GetMapping
-    public DashboardDTO getDashboard() {
+@GetMapping
+public DashboardDTO getDashboard(@RequestParam Long userId) {
 
-        Double totalExpenses = expenseRepository.getTotalExpenses();
+    Double totalExpenses =
+            expenseRepository.getTotalExpensesByUserId(userId);
 
-if (totalExpenses == null) {
-    totalExpenses = 0.0;
+    if (totalExpenses == null) totalExpenses = 0.0;
+
+    Budget budget =
+            budgetRepository.findTopByUserIdOrderByIdDesc(userId);
+
+    Double totalBudget = budget != null ? budget.getAmount() : 0.0;
+    Double remainingBalance = totalBudget - totalExpenses;
+
+    return new DashboardDTO(
+            totalBudget,
+            totalExpenses,
+            remainingBalance
+    );
 }
-
-        java.util.List<Budget> budgets = budgetRepository.findAll();
-
-Budget budget = budgets.isEmpty()
-        ? null
-        : budgets.get(budgets.size() - 1);
-
-        Double totalBudget = budget != null
-        ? budget.getAmount()
-        : 0.0;
-        Double remainingBalance = totalBudget - totalExpenses;
-
-        return new DashboardDTO(
-                totalBudget,
-                totalExpenses,
-                remainingBalance
-        );
-    }
 }

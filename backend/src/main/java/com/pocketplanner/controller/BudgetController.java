@@ -13,11 +13,16 @@ public class BudgetController {
     private BudgetService budgetService;
 
     @PostMapping
-    public Budget saveBudget(@RequestBody Budget budget) {
-        return budgetService.saveBudget(budget);
-    }
-    @GetMapping("/latest")
-public Budget getLatestBudget() {
-    return budgetService.getLatestBudget();
+    pu@PostMapping
+public Budget saveBudget(
+        @RequestBody Budget budget,
+        @RequestParam Long userId
+) {
+    return budgetService.saveBudget(budget, userId);
+}
+
+@GetMapping("/latest")
+public Budget getLatestBudget(@RequestParam Long userId) {
+    return budgetService.getLatestBudget(userId);
 }
 }

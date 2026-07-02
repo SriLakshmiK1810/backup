@@ -4,7 +4,7 @@ import com.pocketplanner.entity.Budget;
 import com.pocketplanner.entity.Expense;
 import com.pocketplanner.repository.BudgetRepository;
 import com.pocketplanner.repository.ExpenseRepository;
-
+import com.pocketplanner.entity.User;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,85 +17,47 @@ public class BudgetService {
     private BudgetRepository budgetRepository;
 
     // Save every new budget
-    public Budget saveBudget(Budget budget) {
-        return budgetRepository.save(budget);
-    }
+    public Budget saveBudget(Budget budget, Long userId) {
+    User user = new User();
+    user.setId(userId);
+    budget.setUser(user);
+    return budgetRepository.save(budget);
+}
 
-    // Get the latest budget
-    public Budget getLatestBudget() {
-        return budgetRepository.findTopByOrderByIdDesc();
-    }
-    
-@Autowired
-private ExpenseRepository expenseRepository;
+public Budget getLatestBudget(Long userId) {
+    return budgetRepository.findTopByUserIdOrderByIdDesc(userId);
+}
 
-public List<BudgetReportDTO> getReports() {
-
-    List<Budget> budgets = budgetRepository.findAllByOrderByStartDateDesc();
+public List<BudgetReportDTO> getReports(Long userId) {
+    List<Budget> budgets =
+            budgetRepository.findByUserIdOrderByStartDateDesc(userId);
 
     List<BudgetReportDTO> reports = new ArrayList<>();
 
     for (Budget budget : budgets) {
-
         double spent = expenseRepository
-                .findByDateBetween(
-                        budget.getStartDate(),
-                        budget.getEndDate()
+                .findByUserIdAndDateBetween(
+                        userId, budget.getStartDate(), budget.getEndDate()
                 )
                 .stream()
                 .mapToDouble(Expense::getAmount)
                 .sum();
 
         double remaining = budget.getAmount() - spent;
+        String status = spent > budget.getAmount() ? "Exceeded" : "Within Budget";
+        String message = spent > budget.getAmount()
+                ? "❌ You exceeded your budget by ₹" + (spent - budget.getAmount())
+                : "✅ You stayed within your budget and saved ₹" + remaining;
 
-        String status;
-        String message;
-
-        if (spent > budget.getAmount()) {
-
-            status = "Exceeded";
-
-            message =
-                    "❌ You exceeded your budget by ₹"
-                            + (spent - budget.getAmount());
-
-        } else {
-
-            status = "Within Budget";
-
-            message =
-                    "✅ You stayed within your budget and saved ₹"
-                            + remaining;
-
-        }
-
-        reports.add(
-
-                new BudgetReportDTO(
-
-                        budget.getPeriod()
-                                + " ("
-                                + budget.getStartDate()
-                                + " - "
-                                + budget.getEndDate()
-                                + ")",
-
-                        budget.getAmount(),
-
-                        spent,
-
-                        remaining,
-
-                        status,
-
-                        message
-                )
-
-        );
-
+        reports.add(new BudgetReportDTO(
+                budget.getPeriod() + " (" + budget.getStartDate()
+                        + " - " + budget.getEndDate() + ")",
+                budget.getAmount(), spent, remaining, status, message
+        ));
     }
-
     return reports;
-
 }
+@Autowired
+private ExpenseRepository expenseRepository;
+
 }

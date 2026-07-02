@@ -24,9 +24,9 @@ private OCRService ocrService;
         return expenseRepository.save(expense);
     }
 
-    public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
-    }
+    public List<Expense> getAllExpenses(Long userId) {
+    return expenseRepository.findByUserId(userId);
+}
 
     public Expense updateExpense(Long id, Expense updatedExpense) {
 
@@ -46,23 +46,20 @@ expense.setDate(updatedExpense.getDate());
         expenseRepository.deleteById(id);
     }
 
-    public Map<String, Double> getCategorySummary() {
+    public Map<String, Double> getCategorySummary(Long userId) {
+    Map<String, Double> summary = new HashMap<>();
 
-        Map<String, Double> summary = new HashMap<>();
-
-        for (Expense expense : expenseRepository.findAll()) {
-
-            summary.put(
-                    expense.getCategory(),
-                    summary.getOrDefault(expense.getCategory(), 0.0)
-                            + expense.getAmount()
-            );
-        }
-
-        return summary;
+    for (Expense expense : expenseRepository.findByUserId(userId)) {
+        summary.put(
+            expense.getCategory(),
+            summary.getOrDefault(expense.getCategory(), 0.0)
+                + expense.getAmount()
+        );
     }
-    public Double getTotalExpenses() {
-    return expenseRepository.getTotalExpenses();
+    return summary;
+}
+public Double getTotalExpenses(Long userId) {
+    return expenseRepository.getTotalExpensesByUserId(userId);
 }
 
 

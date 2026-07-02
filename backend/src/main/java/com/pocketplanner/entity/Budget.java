@@ -3,8 +3,10 @@ package com.pocketplanner.entity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+
 @Entity
 @Table(name = "budgets")
+
 public class Budget {
 
     @Id
@@ -19,6 +21,17 @@ public class Budget {
 
     private LocalDate endDate;
     private Double savingsGoal;
+    @ManyToOne
+@JoinColumn(name = "user_id", nullable = false)
+private User user;
+
+public User getUser() {
+    return user;
+}
+
+public void setUser(User user) {
+    this.user = user;
+}
 
     public Budget() {}
 

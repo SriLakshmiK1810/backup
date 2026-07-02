@@ -32,6 +32,17 @@ private String expenseType;
 private String billImage;
 
 private String merchantName;
+@ManyToOne
+@JoinColumn(name = "user_id", nullable = false)
+private User user;
+
+public User getUser() {
+    return user;
+}
+
+public void setUser(User user) {
+    this.user = user;
+}
 public String getBillImage() {
     return billImage;
 }
